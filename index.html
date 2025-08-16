@@ -3,40 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的第一個網頁</title>
+    <title>我的個人作品集</title>
     <style>
+        /* CSS 樣式 - 網站整體設計 */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            text-align: center;
-            padding-top: 50px;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: inline-block;
-        }
-        h1 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
             color: #333;
         }
-        p {
-            color: #666;
-            line-height: 1.6;
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em 0;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+        }
+        .navbar li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .navbar li a:hover {
+            background-color: #575757;
+        }
+
+        /* 區塊樣式 - 主要內容區 */
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 2em 0;
+        }
+        .hero {
+            text-align: center;
+            padding: 4em 0;
+            background: url('https://via.placeholder.com/1200x400.png?text=Hero+Image') no-repeat center center/cover;
+            color: #fff;
+            display: flex; /* 使用 flexbox 來置中內容 */
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .hero-content {
+            background-color: rgba(0, 0, 0, 0.7); /* 半透明黑色背景 */
+            border-radius: 25px; /* 圓角 */
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6); /* 陰影 */
+            padding: 20px 40px; /* 增加內邊距讓文字和邊框有間距 */
+            width: fit-content; /* 寬度配合內容自動調整 */
+            margin-top: 2em; /* 讓它和上面的標題有點距離 */
+        }
+        .hero h2 {
+            font-size: 2em; /* 調整字體大小 */
+            margin: 0;
+        }
+        .hero p {
+            font-size: 1.1em;
+            margin: 0;
+        }
+        .about-me, .projects {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .project-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .project-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        /* 頁尾樣式 */
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>歡迎來到我的網頁！</h1>
-        <p>這是一個非常簡單的網頁範例。</p>
-        <p>這段文字告訴你網頁的用途。</p>
-        <img src="https://via.placeholder.com/300" alt="一個佔位符圖片">
-        <p>你可以在這裡放置自己的圖片、連結或其他內容。</p>
-        <a href="https://www.google.com" target="_blank">點我前往 Google</a>
-    </div>
+    <header class="header">
+        <h1>個人作品集</h1>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#about">關於我</a></li>
+                <li><a href="#projects">作品</a></li>
+                <li><a href="#contact">聯絡我</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>嗨！我是 [你的名字]</h2>
+                <p>一位熱愛網頁開發的設計師/工程師。</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <section id="about" class="about-me">
+                <h2>關於我</h2>
+                <p>這段文字用來介紹你自己，你的專業、興趣或工作經歷。你可以說說你對網頁設計的熱情，或是你的專長領域。</p>
+            </section>
+
+            <section id="projects" class="projects">
+                <h2>我的作品</h2>
+                <div class="project-grid">
+                    <div class="project-item">
+                        <img src="https://via.placeholder.com/300" alt="作品一">
+                        <h3>專案名稱一</h3>
+                        <p>簡短描述這個專案的內容與特色。</p>
+                    </div>
+                    <div class="project-item">
+                        <img src="https://via.placeholder.com/300" alt="作品二">
+                        <h3>專案名稱二</h3>
+                        <p>簡短描述這個專案的內容與特色。</p>
+                    </div>
+                    <div class="project-item">
+                        <img src="https://via.placeholder.com/300" alt="作品三">
+                        <h3>專案名稱三</h3>
+                        <p>簡短描述這個專案的內容與特色。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="about-me">
+                <h2>聯絡我</h2>
+                <p>你可以透過電子郵件或社群媒體找到我。</p>
+                <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 [你的名字]. 版權所有。</p>
+    </footer>
 
 </body>
 </html>
