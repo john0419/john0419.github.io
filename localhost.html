@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Portal</title>
+    <style>
+        :root {
+            --accent: #7c3aed;
+            --accent-glow: rgba(124, 58, 237, 0.5);
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg);
+            background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #f8fafc;
+        }
+
+        .container {
+            background: var(--card-bg);
+            padding: 3rem 2rem;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0 0 0.5rem 0;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p { color: #94a3b8; font-size: 0.9rem; margin-bottom: 2rem; }
+
+        /* 移除 Number Input 的難看箭頭 */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(15, 23, 42, 0.6);
+            border: 2px solid #334155;
+            border-radius: 12px;
+            padding: 1rem;
+            color: #fff;
+            font-size: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            outline: none;
+            margin-bottom: 1rem;
+        }
+
+        input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 12px;
+            border: none;
+            background: var(--accent);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        button:hover {
+            background: #8b5cf6;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px var(--accent-glow);
+        }
+
+        .history-zone {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #334155;
+            display: none;
+        }
+
+        .last-port-tag {
+            font-size: 0.75rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .history-chip {
+            background: #334155;
+            color: #e2e8f0;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .history-chip:hover {
+            background: #475569;
+            color: #fff;
+        }
+
+        .history-chip::before {
+            content: '⚡';
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>LocalHost</h1>
+        <p>快速切換開發環境</p>
+        
+        <input type="number" id="portInput" placeholder="PORT" autofocus>
+        <button onclick="go()">啟動傳送</button>
+
+        <div id="historyZone" class="history-zone">
+            <span class="last-port-tag">Last Session</span>
+            <button class="history-chip" onclick="go(localStorage.getItem('lastPort'))">
+                localhost:<span id="lastText"></span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const input = document.getElementById('portInput');
+        const historyZone = document.getElementById('historyZone');
+        const lastText = document.getElementById('lastText');
+
+        // 初始化檢查
+        const saved = localStorage.getItem('lastPort');
+        if (saved) {
+            historyZone.style.display = 'block';
+            lastText.innerText = saved;
+        }
+
+        function go(target) {
+            const port = target || input.value;
+            if (port) {
+                localStorage.setItem('lastPort', port);
+                window.location.href = `http://localhost:${port}`;
+            }
+        }
+
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') go();
+        });
+    </script>
+</body>
+</html>
